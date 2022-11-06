@@ -44,6 +44,7 @@ const renderError = (id) => {
         `
         <div>
             <h1>El numero de pokemon: ${id} no existe</h1>
+            <img src="./assets/img/sad_pikachu.gif">
         </div>
         `
 };
@@ -93,7 +94,7 @@ const searchPoke = async (e) => {
         saveLocalStorage(pokeGuardado);
         loader.classList.add('hidden')
         form.reset();
-    },1500)
+    },3000)
 }
 
 const init = async () => {
