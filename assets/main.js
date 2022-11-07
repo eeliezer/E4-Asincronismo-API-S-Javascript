@@ -13,7 +13,6 @@ const fetchPokes = async (input) => {
     }catch (error){
         console.log('error');
     }
-
 };
 
 let pokeGuardado = JSON.parse(localStorage.getItem('pokeData')) || [];
@@ -57,19 +56,9 @@ const renderIdVacio = () => {
         `
 };
 
-
 const renderPokes = (pokemonList) => {
     cajaPoke.innerHTML = pokemonList.map(renderPokemon).join('')
 };
-
-const loaderSearch = (pokeList) => {
-    loader.classList.add('show');
-    setTimeout(() => {
-        renderPokes(pokeList);
-        option.isFetching= false;
-
-    },1500)
-}
 
 const searchPoke = async (e) => {
     e.preventDefault();
