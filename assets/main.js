@@ -25,12 +25,12 @@ const saveLocalStorage = (pokemonList) => {
 
 const renderPokemon = (pokemon) => {
     const { id, name, sprites, weight, height, types } = pokemon;
+    const nameCapitals = name.charAt(0).toUpperCase() + str.slice(1);
     return `
         <div>
             <h1>El numero de pokemon: ${id}</h1>
-            <p>Nombre pokemon: ${name}</p>
+            <p>Nombre pokemon: ${nameCapitals}</p>
             <p>Tipo: ${types.map( tipo => { return `<span>${tipo.type.name}</span>` } ).join(' ')}</p>
-            <p>Peso: ${name}</p>
             <p>Peso: ${weight / 10}</p>
             <p>Peso: ${height / 10}</p>
             <img src="${sprites.other.home.front_default}" alt="poke">
