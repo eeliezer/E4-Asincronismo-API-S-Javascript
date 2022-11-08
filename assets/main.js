@@ -1,6 +1,6 @@
 const form = document.getElementById('form');
 const inputPoke = document.querySelector('.pokeInput');
-const cajaPoke = document.querySelector('.contenedorBusqueda');
+const cajaPoke = document.querySelector('.contenedorPokedex');
 const loader = document.getElementById('load');
 
 const fetchPokes = async (input) => {
@@ -26,7 +26,7 @@ const renderPokemon = (pokemon) => {
     const { id, name, sprites, weight, height, types } = pokemon;
     return  `
         <div id="pokeResultado">
-            <h1>El numero de pokemon: ${id}</h1>
+            <h1>El número de pokemon: ${id}</h1>
             <p>Nombre pokemon: ${name.charAt(0).toUpperCase() + name.slice(1)}</p>
             <p>Tipo: ${types.map( tipo => { return `<span>${tipo.type.name}</span>` } ).join(' ')}</p>
             <p>Peso: ${weight / 10}</p>
@@ -41,7 +41,7 @@ const renderError = (id) => {
         `
         <div>
             <h1>El numero de pokemon: ${id} no existe</h1>
-            <img src="./assets/img/sad_pikachu.gif">
+            <img class="sadPika" src="./assets/img/sad_pikachu.gif">
         </div>
         `
 };
@@ -62,7 +62,6 @@ const renderPokes = (pokemonList) => {
 const searchPoke = async (e) => {
     e.preventDefault();
     const pokeIdIngresado = inputPoke.value.replace(/^0+/, '');
-    
     if(pokeIdIngresado === '')return renderIdVacio() // alert('No puede estar vacio');
     // traigo el elemento de la api
     const fetchedPokes = await fetchPokes(pokeIdIngresado);
@@ -86,7 +85,7 @@ const searchPoke = async (e) => {
 
 const init = async () => {
     form.addEventListener("submit", searchPoke)
-    let pokeGuardado = JSON.parse(localStorage.getItem('pokeData')) || [];
+    let pokeGuardado = JSON.parse(localStorage.getItem('pokeData'));
     console.log(pokeGuardado)
 	if(pokeGuardado){	
 		renderPokes(pokeGuardado);

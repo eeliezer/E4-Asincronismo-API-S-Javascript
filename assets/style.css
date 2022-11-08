@@ -8,7 +8,13 @@
 }
 
 body{
-    background-color: black;
+    background-color: white;
+}
+
+header{
+    background-color: red;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 main{
@@ -27,10 +33,11 @@ main{
 
 .pokeTittle{
     width: 35%;
+    margin-top: 10px;
 }
 
 .pokeballTittle{
-    height: 30px;
+    height: 20px;
 }
 
 .pokedex{
@@ -52,6 +59,7 @@ main{
     justify-content: center;
     align-content: center;
     text-align: center;
+    margin-top: 10px;
 }
 
 .imgPoke{
@@ -63,4 +71,15 @@ main{
     height: 25px;
     font-size: 20px;
     margin-bottom: 25px;
+}
+
+.contenedorPokedex{
+    background-color: red;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px #f8a100;
+}
+
+.sadPika{
+    border-radius: 5px;
 }
