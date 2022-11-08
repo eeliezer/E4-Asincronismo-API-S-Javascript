@@ -41,10 +41,10 @@ main{
 }
 
 .pokedex{
-    display: flex;
+/*     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     color: white;
 }
 
@@ -52,12 +52,12 @@ main{
     width: 70%;
 }
 
-.pokeResultado{
+#pokeResultado{
     display: flex;
-    justify-content: center;
-    align-content: center;
     text-align: center;
     margin-top: 10px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .imgPoke{
