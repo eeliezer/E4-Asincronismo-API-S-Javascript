@@ -15,16 +15,10 @@ const fetchPokes = async (input) => {
     }
 };
 
-let pokeGuardado = JSON.parse(localStorage.getItem('pokeData')) || [];
-
-const saveLocalStorage = (pokemonList) => {
-    if(!pokemonList) return
-    localStorage.setItem('pokeData', JSON.stringify(pokemonList))
-};
-
 const renderPokemon = (pokemon) => {
     const { id, name, sprites, weight, height, types } = pokemon;
-    return  `
+    cajaPoke.innerHTML =  
+        `
         <div id="pokeResultado">
             <h1>El número de pokemon: ${id}</h1>
             <p>Nombre pokemon: ${name.charAt(0).toUpperCase() + name.slice(1)}</p>
@@ -50,13 +44,9 @@ const renderIdVacio = () => {
     cajaPoke.innerHTML =
         `
         <div>
-            <h1>ingrese un numero</h1>
+            <h1>Ingrese un número</h1>
         </div>
         `
-};
-
-const renderPokes = (pokemonList) => {
-    cajaPoke.innerHTML = pokemonList.map(renderPokemon).join('')
 };
 
 const searchPoke = async (e) => {
@@ -69,15 +59,14 @@ const searchPoke = async (e) => {
     if(!fetchedPokes) {
         form.reset();
         return renderError(pokeIdIngresado); //alert("No existe")
-    } else if (pokeGuardado.find((poke) => poke.id === fetchedPokes.id)) {
+    } else if (pokeIdIngresado === fetchedPokes.id) {
         form.reset();
-        return alert("ya estamos mostrando el pokemon")
+        return alert("Ya estamos mostrando el pokemon")
     }
     // si paso la validacion, lo agrego a mi lista de pokemones
     loader.classList.remove('hidden')
     setTimeout(() => {
-        pokeGuardado = [fetchedPokes, ...pokeGuardado];
-        renderPokes(pokeGuardado);
+        renderPokemon(fetchedPokes);
         loader.classList.add('hidden');
         form.reset();
     },3000)
@@ -85,11 +74,6 @@ const searchPoke = async (e) => {
 
 const init = async () => {
     form.addEventListener("submit", searchPoke)
-    let pokeGuardado = JSON.parse(localStorage.getItem('pokeData'));
-    console.log(pokeGuardado)
-	if(pokeGuardado){	
-		renderPokes(pokeGuardado);
-	}
 }
 
 init();
