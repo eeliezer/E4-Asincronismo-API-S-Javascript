@@ -19,12 +19,12 @@ let pokeGuardado = JSON.parse(localStorage.getItem('pokeData')) || [];
 
 const saveLocalStorage = (pokemonList) => {
     if(!pokemonList) return
-    localStorage.setItem('pokedata', JSON.stringify(pokemonList))
+    localStorage.setItem('pokeData', JSON.stringify(pokemonList))
 };
 
 const renderPokemon = (pokemon) => {
     const { id, name, sprites, weight, height, types } = pokemon;
-    return `
+    return  `
         <div>
             <h1>El numero de pokemon: ${id}</h1>
             <p>Nombre pokemon: ${name.charAt(0).toUpperCase() + name.slice(1)}</p>
@@ -32,7 +32,6 @@ const renderPokemon = (pokemon) => {
             <p>Peso: ${weight / 10}</p>
             <p>Peso: ${height / 10}</p>
             <img src="${sprites.other.home.front_default}" alt="poke">
-            <img src="${sprites.other.home.front_shiny}" alt="poke">
         </div>
         `
 };
@@ -63,6 +62,7 @@ const renderPokes = (pokemonList) => {
 const searchPoke = async (e) => {
     e.preventDefault();
     const pokeIdIngresado = inputPoke.value.replace(/^0+/, '');
+    
     if(pokeIdIngresado === '')return renderIdVacio() // alert('No puede estar vacio');
     // traigo el elemento de la api
     const fetchedPokes = await fetchPokes(pokeIdIngresado);
@@ -70,23 +70,27 @@ const searchPoke = async (e) => {
     if(!fetchedPokes) {
         form.reset();
         return renderError(pokeIdIngresado); //alert("No existe")
-    } else if (pokeGuardado.some((poke) => poke.id === fetchedPokes.id)) {
+    } else if (pokeGuardado.find((poke) => poke.id === fetchedPokes.id)) {
         form.reset();
         return alert("ya estamos mostrando el pokemon")
     }
     // si paso la validacion, lo agrego a mi lista de pokemones
-    loader.classList.remove('hidden');
+    loader.classList.remove('hidden')
     setTimeout(() => {
         pokeGuardado = [fetchedPokes, ...pokeGuardado];
         renderPokes(pokeGuardado);
-        saveLocalStorage(pokeGuardado);
-        loader.classList.add('hidden')
+        loader.classList.add('hidden');
         form.reset();
     },3000)
 }
 
 const init = async () => {
     form.addEventListener("submit", searchPoke)
+    let pokeGuardado = JSON.parse(localStorage.getItem('pokeData')) || [];
+    console.log(pokeGuardado)
+	if(pokeGuardado){	
+		renderPokes(pokeGuardado);
+	}
 }
 
 init();

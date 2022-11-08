@@ -6,3 +6,42 @@
 .hidden{
     display: none;
 }
+
+body{
+    background-color: black;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokeTittle{
+    width: 35%;
+}
+
+.pokeballTittle{
+    height: 30px;
+}
+
+.pokedex{
+    position: absolute;
+    margin-top: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokedexImg{
+    width: 70%;
+}
