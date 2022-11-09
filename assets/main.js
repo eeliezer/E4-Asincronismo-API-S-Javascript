@@ -25,7 +25,7 @@ const renderPokemon = (pokemon) => {
             <p>Tipo: ${types.map( tipo => { return `<img class="pokeType" src="./assets/img/${tipo.type.name}.png" alt="${tipo.type.name}"><span>${tipo.type.name.charAt(0).toUpperCase() + tipo.type.name.slice(1)}</span>` } ).join(' ')}</p>
             <p>Peso: ${weight / 10}kg</p>
             <p>Peso: ${height / 10}mts</p>
-            <img class="imgPoke" src="${sprites.other.home.front_default}" alt="poke">
+            <img class="imgPoke" src="${sprites.other.home.front_default}" alt="${name.charAt(0).toUpperCase() + name.slice(1)}">
         </div>
         `
 };
@@ -51,6 +51,7 @@ const renderIdVacio = () => {
 
 const searchPoke = async (e) => {
     e.preventDefault();
+    e.stopPropagation();
     const pokeIdIngresado = inputPoke.value.replace(/^0+/, '');
     if(pokeIdIngresado === '')return renderIdVacio() // alert('No puede estar vacio');
     // traigo el elemento de la api
@@ -59,7 +60,7 @@ const searchPoke = async (e) => {
     if(!fetchedPokes) {
         form.reset();
         return renderError(pokeIdIngresado); //alert("No existe")
-    } else if (pokeIdIngresado === fetchedPokes.id) {
+    } else if (pokeIdIngresado === fetchedPokes) {
         form.reset();
         return alert("Ya estamos mostrando el Pokémon")
     }
