@@ -43,7 +43,7 @@ const renderError = (id) => {
 const renderIdVacio = () => {
     cajaPoke.innerHTML =
         `
-        <div>
+        <div class="noIdPoke">
             <h1>Ingrese un número</h1>
         </div>
         `
