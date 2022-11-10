@@ -48,6 +48,10 @@ main{
     color: white;
 }
 
+.contenedorError{
+    color: black;
+}
+
 .noIdPoke{
     color: black;
 }
