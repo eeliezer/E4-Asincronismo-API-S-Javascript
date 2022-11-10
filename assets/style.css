@@ -48,6 +48,10 @@ main{
     color: white;
 }
 
+.buscando{
+    color:black;
+}
+
 .contenedorError{
     color: black;
 }

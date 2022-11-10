@@ -34,7 +34,7 @@ const renderError = (id) => {
     cajaPoke.innerHTML =
         `
         <div class="contenedorError">
-            <h1>El numero de pokémon: ${id} No existe</h1>
+            <h1>El número de pokémon: ${id} No existe</h1>
             <img class="sadPika" src="./assets/img/sad_pikachu.gif">
         </div>
         `
@@ -49,9 +49,19 @@ const renderIdVacio = () => {
         `
 };
 
+const buscando = () => {
+    cajaPoke.innerHTML =
+        `
+        <div class="buscando">
+            <h1>Buscando Pokémon</h1>
+        </div>
+        `
+}
+
 const searchPoke = async (e) => {
     e.preventDefault();
     e.stopPropagation();
+    buscando();
     const pokeIdIngresado = inputPoke.value.replace(/^0+/, '');
     if(pokeIdIngresado === '')return renderIdVacio() // alert('No puede estar vacio');
     // traigo el elemento de la api
